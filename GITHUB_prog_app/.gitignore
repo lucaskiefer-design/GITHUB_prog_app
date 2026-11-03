@@ -1,3 +1,5 @@
-.venv
-
-.idea
+PyCharm*/
+.venv/
+.idea/
+__pycache__/
+*.zip
