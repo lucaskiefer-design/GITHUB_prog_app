@@ -19,6 +19,9 @@ class Funcionario:
         self.__salario = self.__salario * (1 + porcentagem / 100)
         print(f"{self.nome} recebeu {porcentagem}% de aumento")
 
+    def bonus(self):
+        return self.salario * 0.10
+
 
 ana = Funcionario("Ana", 3000)
 ana.apresentar()
@@ -69,3 +72,34 @@ print("\n")
 Caio.mostrar_curso()
 Caio.apresentar()
 Caio.dar_aumento(200)
+
+#3. Polimorfismo
+# O mesmo metodo pode existir em várias classes, mas apresentar comportamentos diferentes dependendo do objeto que está sendo executado nesse metodo
+
+class Gerente(Funcionario):
+    def __init__(self, nome, salario, equipe):
+        super().__init__(nome, salario)
+        self.equipe = equipe
+
+    def bonus(self):
+        return self.salario * 0.20 + self.equipe * 100
+
+
+class Estagiario(Funcionario):
+    def __init__(self, nome, salario, curso):
+        super().__init__(nome, salario)
+        self.curso = curso
+
+    def bonus(self):
+        return 200
+
+print("\n\n\n====== Polimorfismo =====\n")
+#Criando objetos de diferentes classes
+equipe = [
+    Funcionario("Ana", 3000),
+    Gerente("Bruno", 8000, 5),
+    Estagiario("Caio", 1500, "Análise de Sistemas")
+]
+#Percorrendo a lista funcionário
+for funcionario in equipe:
+    print(f"{funcionario.nome}: R$  {funcionario.bonus()}")
